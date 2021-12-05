@@ -1,0 +1,42 @@
+name: Publish container image
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "0 2 * * */7"
+
+env:
+  REGISTRY: ghcr.io
+jobs:
+  publish-docker-image:
+    permissions:
+      contents: read
+      packages: write
+    runs-on: ubuntu-latest
+    name: Publish Docker image
+
+    steps:
+      - name: Check out repo
+        uses: actions/checkout@v2
+        with:
+          ref: master
+          fetch-depth: 1
+      - name: Find latest Nextcloud Desktop version
+        id: get_nextcloud_desktop_version
+        uses: dangmai/get-apt-package-version@v1
+        with:
+          ppa: nextcloud-devs/client
+          package: nextcloud-desktop
+          baseImage: ubuntu:focal
+      - name: Log in to the Container registry
+        uses: docker/login-action@f054a8b539a109f9f41c372932f1ae047eff08c9
+        with:
+          registry: ${{ env.REGISTRY }}
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+      - name: Build and Push to Container Registry
+        uses: docker/build-push-action@v2
+        with:
+          context: .
+          push: true
+          tags: ghcr.io/dangmai/nextcloud-desktop:${{ steps.get_nextcloud_desktop_version.outputs.version }}

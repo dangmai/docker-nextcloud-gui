@@ -1,4 +1,7 @@
-FROM ghcr.io/linuxserver/baseimage-rdesktop-web:bionic
+ARG BASE_IMAGE_TAG=focal
+ARG NEXTCLOUD_DESKTOP_VERSION
+
+FROM ghcr.io/linuxserver/baseimage-rdesktop-web:$BASE_IMAGE_TAG
 
 LABEL maintainer="dangmai"
 
@@ -11,7 +14,7 @@ RUN \
   echo "**** install packages ****" && \
   add-apt-repository ppa:nextcloud-devs/client && \
   apt-get update && \
-  apt-get install -y --no-install-recommends nextcloud-client && \
+  apt-get install -y --no-install-recommends nextcloud-desktop=$NEXTCLOUD_DESKTOP_VERSION && \
   dbus-uuidgen > /etc/machine-id && \
   echo "**** cleanup ****" && \
   apt-get clean && \
