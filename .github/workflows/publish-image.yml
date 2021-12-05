@@ -43,7 +43,9 @@ jobs:
         with:
           context: .
           push: true
-          tags: ghcr.io/dangmai/nextcloud-desktop:${{ steps.extract_semver.outputs.semver }}
+          tags: |
+            ghcr.io/dangmai/nextcloud-desktop:${{ steps.extract_semver.outputs.semver }}
+            ghcr.io/dangmai/nextcloud-desktop:latest
           build-args: |
             "BASE_IMAGE_TAG=focal"
             "NEXTCLOUD_DESKTOP_VERSION=${{ steps.get_nextcloud_desktop_version.outputs.version }}"
