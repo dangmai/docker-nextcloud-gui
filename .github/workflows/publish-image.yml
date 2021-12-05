@@ -23,7 +23,7 @@ jobs:
           fetch-depth: 1
       - name: Find latest Nextcloud Desktop version
         id: get_nextcloud_desktop_version
-        uses: dangmai/get-apt-package-version@v1
+        uses: dangmai/get-apt-package-version@v1.0.0
         with:
           ppa: nextcloud-devs/client
           package: nextcloud-desktop
