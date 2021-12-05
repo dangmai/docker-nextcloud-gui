@@ -1,1 +1,1 @@
-s6-envdir -fn -- /var/run/s6/container_environment /usr/bin/nextcloud $CLI_ARGS
+s6-envdir -fn -- /var/run/s6/container_environment nohup /usr/bin/tint2 & && /usr/bin/nextcloud $CLI_ARGS
