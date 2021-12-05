@@ -1,7 +1,7 @@
 ARG BASE_IMAGE_TAG=focal
-ARG NEXTCLOUD_DESKTOP_VERSION
 
 FROM ghcr.io/linuxserver/baseimage-rdesktop-web:$BASE_IMAGE_TAG
+ARG NEXTCLOUD_DESKTOP_VERSION
 
 LABEL maintainer="dangmai"
 
