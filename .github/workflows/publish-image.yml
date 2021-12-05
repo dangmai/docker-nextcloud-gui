@@ -23,7 +23,7 @@ jobs:
           fetch-depth: 1
       - name: Find latest Nextcloud Desktop version
         id: get_nextcloud_desktop_version
-        uses: dangmai/get-apt-package-version@v1.0.0
+        uses: dangmai/get-apt-package-version@v1.1.0
         with:
           ppa: nextcloud-devs/client
           package: nextcloud-desktop
@@ -40,3 +40,6 @@ jobs:
           context: .
           push: true
           tags: ghcr.io/dangmai/nextcloud-desktop:${{ steps.get_nextcloud_desktop_version.outputs.version }}
+          build-args:
+            - BASE_IMAGE_TAG=focal
+            - NEXTCLOUD_DESKTOP_VERSION=${{ steps.get_nextcloud_desktop_version.outputs.version }}
