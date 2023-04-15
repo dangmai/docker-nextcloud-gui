@@ -27,7 +27,7 @@ jobs:
         with:
           ppa: nextcloud-devs/client
           package: nextcloud-desktop
-          baseImage: ubuntu:focal
+          baseImage: ubuntu:jammy
       - name: Extract semver
         id: extract_semver
         run: |
@@ -47,5 +47,5 @@ jobs:
             ghcr.io/dangmai/nextcloud-desktop:${{ steps.extract_semver.outputs.semver }}
             ghcr.io/dangmai/nextcloud-desktop:latest
           build-args: |
-            "BASE_IMAGE_TAG=focal"
+            "BASE_IMAGE_TAG=jammy"
             "NEXTCLOUD_DESKTOP_VERSION=${{ steps.get_nextcloud_desktop_version.outputs.version }}"

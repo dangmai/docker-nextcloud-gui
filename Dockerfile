@@ -1,4 +1,4 @@
-ARG BASE_IMAGE_TAG=focal
+ARG BASE_IMAGE_TAG=jammy
 
 FROM ghcr.io/linuxserver/baseimage-rdesktop-web:$BASE_IMAGE_TAG
 ARG NEXTCLOUD_DESKTOP_VERSION
