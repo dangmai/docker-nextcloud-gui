@@ -9,4 +9,15 @@
       automerge: true,
     },
   ],
+  customManagers: [
+    {
+      customType: "regex",
+      managerFilePatterns: ["/^Dockerfile$/"],
+      matchStrings: [
+        '#\\s*renovate:\\s*?(suite=(?<suite>.*?))?\\s*depName=(?<depName>.*?)?\\sARG .*?_VERSION="(?<currentValue>.*)"',
+      ],
+      registryUrlTemplate: "https://ppa.launchpadcontent.net/nextcloud-devs/client/ubuntu/?release={{suite}}&components=main&binaryArch=amd64",
+      datasourceTemplate: "deb",
+    },
+  ],
 }
