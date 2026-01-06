@@ -1,5 +1,6 @@
 {
   extends: ["config:recommended"],
+  ignoreTests: true,
   assignees: ["dangmai"],
   automergeType: "branch",
   packageRules: [
