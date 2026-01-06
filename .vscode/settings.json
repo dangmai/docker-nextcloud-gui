@@ -1,3 +1,9 @@
 {
+  "json.schemas": [
+    {
+      "fileMatch": ["/renovate.json5"],
+      "url": "https://docs.renovatebot.com/renovate-schema.json"
+    }
+  ],
   "docker.languageserver.formatter.ignoreMultilineInstructions": true
 }
