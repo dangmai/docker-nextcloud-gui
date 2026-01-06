@@ -21,17 +21,10 @@ jobs:
         with:
           ref: master
           fetch-depth: 1
-      - name: Find latest Nextcloud Desktop version
-        id: get_nextcloud_desktop_version
-        uses: dangmai/get-apt-package-version@v1.3.0
-        with:
-          ppa: nextcloud-devs/client
-          package: nextcloud-desktop
-          baseImage: ubuntu:jammy
       - name: Extract semver
         id: extract_semver
         run: |
-          echo "::set-output name=semver::$(echo ${{ steps.get_nextcloud_desktop_version.outputs.version }} | cut -d'-' -f 1)"
+          echo "semver=$(grep -oP 'ARG NEXTCLOUD_DESKTOP_VERSION=\K.*' Dockerfile)" >> $GITHUB_OUTPUT
       - name: Log in to the Container registry
         uses: docker/login-action@v3.6.0
         with:
@@ -46,6 +39,3 @@ jobs:
           tags: |
             ghcr.io/dangmai/nextcloud-desktop:${{ steps.extract_semver.outputs.semver }}
             ghcr.io/dangmai/nextcloud-desktop:latest
-          build-args: |
-            "BASE_IMAGE_TAG=jammy"
-            "NEXTCLOUD_DESKTOP_VERSION=${{ steps.get_nextcloud_desktop_version.outputs.version }}"
