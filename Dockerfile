@@ -2,7 +2,7 @@ ARG BASE_IMAGE_TAG=jammy
 
 FROM ghcr.io/linuxserver/baseimage-rdesktop-web:$BASE_IMAGE_TAG
 # renovate: suite=jammy depName=nextcloud-desktop
-ARG NEXTCLOUD_DESKTOP_VERSION=4.0.5-20260120.145034.0bcb41dd46-1.0~jammy1
+ARG NEXTCLOUD_DESKTOP_VERSION=4.0.6-20260122.174414.847472c1e7-1.0~jammy1
 
 LABEL maintainer="dangmai"
 
